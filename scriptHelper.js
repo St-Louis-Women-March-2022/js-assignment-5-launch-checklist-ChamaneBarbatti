@@ -17,11 +17,25 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 }
 
 function validateInput(testInput) {
-   
+    let value = ""
+    if(isNaN(testInput)) {
+
+if(testInput===""){
+     value= "Empty";
+}
+else{
+     value= 'Not a Number';
+}
+}  
+  else{
+   value=  'Is a number';
+  }  
+ return value;  
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   
+   document.getElementById
+    
 }
 
 async function myFetch() {

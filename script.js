@@ -1,5 +1,7 @@
 // Write your JavaScript code here!
 
+//const { validateInput } = require("./scriptHelper");
+
 window.addEventListener("load", function() {
 
    let listedPlanets;
@@ -12,5 +14,32 @@ window.addEventListener("load", function() {
        console.log(listedPlanets);
        // Below this comment call the appropriate helper functions to pick a planet fom the list of planets and add that information to your destination.
    })
-   
-});
+
+ //});
+// window.addEventListener("load", function() {
+    let form = document.querySelector("form");
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+      let pilotNameInput = document.querySelector("input[name= pilotName]");
+      let copilotName = document.querySelector("input[name= co-pilot]");
+      let fuellevelName = document.querySelector("input[name= fuelLevel]");
+      let cargoLevelName = document.querySelector("input[name= cargoLevel]"); 
+      if (pilotNameInput.value === "" || copilotName.value === "" || fuellevelName.value === "" || cargoLevelName.value === ""){
+      
+          alert("All fields are required!");
+        
+        
+      }
+      
+      
+
+    });
+  
+  });
+       
+
+  
+
+
+
+    
