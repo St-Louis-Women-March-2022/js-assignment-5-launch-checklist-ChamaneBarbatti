@@ -1,5 +1,5 @@
 // Write your helper functions here!
-require('isomorphic-fetch');
+require('isomorphic-fetch'); 
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
@@ -34,7 +34,35 @@ else{
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
-   document.getElementById
+
+    document.getElementById("faultyItems").innerHTML=`
+  
+${"Pilot Chris is ready for launch"}
+${"Co-Pilot Blake is ready for launch"}
+`;
+
+if (fuelLevel < 10000){
+    document.getElementById("fuelLevel").innerHTML="There is not enough fuel for journey";
+    document.getElementById("faultyItems").style.visiblity = "visible";
+    document.getElementById("launchStatus").innerHTML="Shuttle not ready for launch";
+    document.getElementById("launchStatus").innerHTML.style.color = 'red';
+}
+  if (cargoLevel > 10000){
+    document.queryselector("ol").style.visiblity = "visible";
+    document.getElementById("cargoLevel").innerHTML = "There is too much mass for the shuttle to take off";
+    document.getElementById("launchStatus").innerHTML="Shuttle not ready for launch";
+    document.getElementById("launchStatus").innerHTML.style.color = 'red';
+  }
+else{
+    document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch";
+    document.getElementById("launchStatus").innerHTML.style.color = 'green';
+}
+
+
+
+
+
+
     
 }
 
