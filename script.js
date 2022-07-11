@@ -22,24 +22,18 @@ window.addEventListener("load", function() {
       event.preventDefault();
   
 
-      let listName = document.getElementById ("faultyItems");
-      let pilotNameInput = document.querySelector("input[name= pilotName]");
-      let copilotName = document.querySelector("input[name= co-pilot]");
-      let fuelLevelName = document.querySelector("input[name= fuelLevel]");
-      let cargoLevelName = document.querySelector("input[name= cargoLevel]"); 
-      if (pilotNameInput.value === "" || copilotName.value === "" || fuelLevelName.value === "" || cargoLevelName.value === ""){
-      
-          alert("All fields are required!");
-         
-      };
-      if(fuelLevelName.value < 10000  || cargoLevelName.value > 10000){
-
-      }
-      
-
+      let list = document.getElementById ("faultyItems");
+      let h2 = document.getElementById ("launchStatus");
+      let pilot = document.querySelector("input[name= pilotName]");
+      let copilot = document.querySelector("input[name= copilotName]");
+      let fuelLevel = document.querySelector("input[name= fuelLevel]");
+      let cargoMass = document.querySelector("input[name= cargoMass]"); 
+     
+     formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) 
     });
+});   
   
-  });
+
        
 
   
