@@ -3,20 +3,7 @@
 // Write your helper functions here!
 //require('isomorphic-fetch'); 
 
-function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
-   // Here is the HTML formatting for our mission target div.
-   /*
-                <h2>Mission Destination</h2>
-                <ol>
-                    <li>Name: </li>
-                    <li>Diameter: </li>
-                    <li>Star: ${star}</li>
-                    <li>Distance from Earth: </li>
-                    <li>Number of Moons: </li>
-                </ol>
-                <img src="">
-   */
-}
+
 
 function validateInput(testInput) {
     let value = ""
@@ -81,39 +68,28 @@ if (fuelLevel < 10000){
     
 }
 
-async function myFetch() {
-    let planetsReturned;
-
-    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
-        response.json().then(function(json){
-            console.log(json);
-            let div = document.getElementById("Mission Destination");
-            for(i = 0; i < json.length; i++) {
-                div.innerHTML += `
-                <div class = "missionTarget">
-                    <h2>"Mission Destination"</h2>
-<ol>
-                    <li>name:${json[i].Name} </li>
-                    <li>Diamter:${json[i].Diameter} </li>
-                    <li>Star: ${json[i].star}</li>
-                    <li>Distance from Earth:${json[i].DistancefromEarth} </li>
-                    <li>Number of Moons:${json[i].NumberofMoons} </li>
-
-    </ol>
-                  <img class = "  " src="${json[I].picture}">
-</div>
-`;
-            }
-
-
-        });
-        });
-
-    return planetsReturned;
-}
+async function myFetch(){
+    return await fetch("https://handlers.education.launchcode.org/static/planets.json");
+   }
 
 function pickPlanet(planets) {
+    return planets[Math.floor(Math.random() * 6)];
 }
+
+function addDestinationInfo(jsondata) {
+
+
+    document.getElementById("missionTarget").innerHTML = `<h2>Mission Destination</h2>
+    <ol>
+        <li>Name: ${jsondata.name} </li>
+        <li>Diameter: ${jsondata.diameter} </li>
+        <li>Star: ${jsondata.star}</li>
+        <li>Distance from Earth: ${jsondata.distance}</li>
+        <li>Number of Moons: ${jsondata.moons} </li>
+    </ol>
+    <img src="${jsondata.image}">`;
+
+ }
 
 module.exports.addDestinationInfo = addDestinationInfo;
 module.exports.validateInput = validateInput;
