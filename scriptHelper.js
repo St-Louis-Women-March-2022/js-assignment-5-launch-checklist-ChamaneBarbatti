@@ -20,7 +20,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
 
 function validateInput(testInput) {
     let value = ""
-    if(testInput===""){
+    if(testInput == undefined || testInput == ""){
      value= "Empty";
 } else if (isNaN(testInput)){
      value= 'Not a Number';
@@ -31,45 +31,47 @@ function validateInput(testInput) {
 }
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoMass) {
-
     
-    if (validateInput(pilot.value) === "Empty" || validateInput(copilot.value) === "Empty" || validateInput(fuelLevel.value) === "Empty" || validateInput(cargoMass.value) === "Empty"){
+    if (validateInput(pilot) === "Empty" || validateInput(copilot) === "Empty" || validateInput(fuelLevel) === "Empty" || validateInput(cargoMass) === "Empty"){
         alert("All fields are required!");
         
  
-       }else if (validateInput(fuelLevel.value) === "Not a Number" || validateInput(cargoMass.value) === "Not a Number" || validateInput(pilot.value) === "Is a number" || validateInput(copilot.value) === "Is a number" ){
+       }else if (validateInput(fuelLevel) === "Not a Number" || validateInput(cargoMass) === "Not a Number" || validateInput(pilot) === "Is a number" || validateInput(copilot) === "Is a number" ){
 
          alert("Make sure to enter valid information for each field");
        };
         
           
     
-     // if(fuelLevelName.value < 10000  || cargoLevelName.value > 10000){
+    
  
-     //  }
-       
-document.getElementById("faultyItems").innerHTML=`
-  Pilot ${pilot} is ready for launch
-  Co-Pilot ${copilot}is ready for launch
+    
 
-`;
+     document.getElementById("faultyItems").style.visibility = 'visible';
+     document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch";
+     document.getElementById("launchStatus").style.color = "green";
+     document.getElementById("pilotStatus").innerHTML = `Pilot ${pilot} is ready for launch`;
+     document.getElementById("copilotStatus").innerHTML = `Co-Pilot ${copilot} is ready for launch`;
+
+       //return;
+    
+    
 
 if (fuelLevel < 10000){
-    document.getElementById("fuelLevel").innerHTML="There is not enough fuel for journey";
-   document.getElementById("faultyItems").style.visiblity = "visible";
-    document.getElementById("launchStatus").innerHTML="Shuttle not ready for launch";
-    document.getElementById("launchStatus").style.color = 'red';
+   
+   document.getElementById("fuelStatus").innerHTML="There is not enough fuel for journey";
+   document.getElementById("launchStatus").innerHTML="Shuttle not ready for launch";
+   document.getElementById("launchStatus").style.color = 'red';
 }
   if (cargoMass > 10000){
-    list.style.visiblity = "visible";
-    document.getElementById("cargoMass").innerHTML = "There is too much mass for the shuttle to take off";
+    document.getElementById("faultyItems").style.visiblity = "visible";
+    document.getElementById("cargoStatus").innerHTML = "There is too much mass for the shuttle to take off";
     document.getElementById("launchStatus").innerHTML="Shuttle not ready for launch";
     document.getElementById("launchStatus").style.color = 'red';
   }
-else{
-    document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch";
-    document.getElementById("launchStatus").style.color = "green";
-}
+
+    
+
 
 
 
@@ -82,7 +84,29 @@ else{
 async function myFetch() {
     let planetsReturned;
 
-    planetsReturned = await fetch().then( function(response) {
+    planetsReturned = await fetch("https://handlers.education.launchcode.org/static/planets.json").then( function(response) {
+        response.json().then(function(json){
+            console.log(json);
+            let div = document.getElementById("Mission Destination");
+            for(i = 0; i < json.length; i++) {
+                div.innerHTML += `
+                <div class = "missionTarget">
+                    <h2>"Mission Destination"</h2>
+<ol>
+                    <li>name:${json[i].Name} </li>
+                    <li>Diamter:${json[i].Diameter} </li>
+                    <li>Star: ${json[i].star}</li>
+                    <li>Distance from Earth:${json[i].DistancefromEarth} </li>
+                    <li>Number of Moons:${json[i].NumberofMoons} </li>
+
+    </ol>
+                  <img class = "  " src="${json[I].picture}">
+</div>
+`;
+            }
+
+
+        });
         });
 
     return planetsReturned;
